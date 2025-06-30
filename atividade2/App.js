@@ -1,21 +1,44 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 
 
 class App extends Component{
-    saudacaoFuncao = (nome) => {
-        return `Olá, ${nome}!`;
+    constructor(props) {
+        super(props);
+        this.state = {
+            infoUsuario: [
+                {nome: 'João', idade: 25, cidade: 'Indaiatuba'},
+                {nome: 'Maria', idade: 30, cidade: 'São Paulo'},
+                {nome: 'Pedro', idade: 22, cidade: 'Campinas'},
+                {nome: 'Ana', idade: 28, cidade: 'Sorocaba'},
+                {nome: 'Lucas', idade: 35, cidade: 'São José dos Campos'},
+            ]
+        };
     }
 
     render(){
       return (
           <View style={styles.container}>
-             <Text>{this.saudacaoFuncao('Gabriel')}</Text>
+              <FlatList
+                  data={this.state.infoUsuario}
+                  renderItem={ ({item}) => <CardUsuario nome={item.nome} idade={item.idade} cidade={item.cidade} /> }
+              />
           </View>
       );
   }
 }
 
+class CardUsuario extends Component {
+    render(){
+        return(
+            <View style={styles.container}>
+                <Text style={styles.saudacao}>Olá, {this.props.nome}!</Text>
+                <Text style={styles.texto}>Idade: {this.props.idade}</Text>
+                <Text style={styles.texto}>Cidade: {this.props.cidade}</Text>
+            </View>
+        )
+    }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -33,6 +56,7 @@ const styles = StyleSheet.create({
             color: '#000',
             fontWeight: 'bold',
         },
+
 })
 
 export default App;
