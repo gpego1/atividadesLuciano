@@ -1,16 +1,17 @@
+import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import React, {Component} from 'react';
 
 
 class App extends Component{
-    saudacaoFuncao = (nome) => {
+    saudacaoFuncao (nome) {
         return `Olá, ${nome}!`;
     }
 
     render(){
       return (
           <View style={styles.container}>
-             <Text>{this.saudacaoFuncao('Gabriel')}</Text>
+             <Text>{this.saudacaoFuncao('João')}</Text>
           </View>
       );
   }
