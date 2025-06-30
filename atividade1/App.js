@@ -1,29 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Text, View, ScrollView} from 'react-native';
+import Cabecalho from "./src/Cabecalho.js";
+import Rodape from "./src/Rodape.js";
+
 
 class App extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            data: [
-                {key: 'a', value: 'Item 1'},
-                {key: 'b', value: 'Item 2'},
-                {key: 'c', value: 'Item 3'},
-                {key: 'd', value: 'Item 4'},
-             ]
-        };
-    }
     render() {
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <FlatList
-                    data={this.state.data}
-                    renderItem={ ({item}) => <Text>{item.value}</Text> }
-                />
+        return(
+            <View>
+                <Cabecalho />
+                <Rodape />
             </View>
-        );
+        )
     }
-}
 
-export default  App;
+}
+export default App;
