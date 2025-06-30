@@ -1,15 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import Saudacao from './src/Saudacao/Saudacao';
+import React, {Component} from 'react';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Saudacao nome="Gabriel" />
-    </View>
-  );
+
+class App extends Component{
+    saudacaoFuncao(nome){
+        return `Olá, ${nome}!`;
+    }
+
+    render(){
+      return (
+          <View style={styles.container}>
+             <Text>{this.saudacaoFuncao('João')}</Text>
+          </View>
+      );
+  }
 }
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,5 +25,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+    texto: {
+        fontSize: 20,
+        color: '#333',
+    },
+    saudacao: {
+            fontSize: 24,
+            color: '#000',
+            fontWeight: 'bold',
+        },
 })
 
+export default App;
