@@ -1,43 +1,55 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import styled from 'styled-components/native'; 
+
+
+const StyledContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.backgroundColor || '#fff'}; /* Aplica a cor de fundo dinâmica */
+`;
+
+const StyledTitle = styled.Text`
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: ${(props) => {
+    if (props.currentBackgroundColor === 'black') {
+      return '#fff'; 
+    } else if (props.currentBackgroundColor === 'white') {
+      return '#000'; 
+    }
+    return '#000'; 
+  }};
+`;
+
+const StyledButton = styled.TouchableOpacity`
+  background-color: #333;
+  padding-vertical: 10px;
+  padding-horizontal: 20px;
+  border-radius: 8px;
+  margin-vertical: 10px;
+`;
+
+const StyledButtonText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+`;
 
 export default function App() {
   const [corFundo, setCorFundo] = useState('#fff');
 
   return (
-      <View style={[styles.container, { backgroundColor: corFundo }]}>
-        <Text style={styles.titulo}>Bem-vindo ao app de mudança de cor</Text>
+    <StyledContainer backgroundColor={corFundo}>
+      <StyledTitle currentBackgroundColor={corFundo}>Bem-vindo ao app de mudança de cor</StyledTitle>
 
-        <TouchableOpacity style={styles.botao} onPress={() => setCorFundo('red')}>
-          <Text style={styles.textoBotao}>Vermelho</Text>
-        </TouchableOpacity>
+      <StyledButton onPress={() => setCorFundo('black')}>
+        <StyledButtonText>Preto</StyledButtonText>
+      </StyledButton>
 
-        <TouchableOpacity style={styles.botao} onPress={() => setCorFundo('blue')}>
-          <Text style={styles.textoBotao}>Azul</Text>
-        </TouchableOpacity>
-      </View>
+      <StyledButton onPress={() => setCorFundo('white')}>
+        <StyledButtonText>Branco</StyledButtonText>
+      </StyledButton>
+    </StyledContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  titulo: {
-    fontSize: 18,
-    marginBottom: 20,
-  },
-  botao: {
-    backgroundColor: '#333',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-    marginVertical: 10,
-  },
-  textoBotao: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
-});
